@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="author" content="colorlib.com">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400" rel="stylesheet" />
+        <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" />
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+      <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-dark bg-danger fixed-top s133">
+          <a href="/"><span class="navbar-brand mb-0 h1">Simple <b>MDB</b></span></a>
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">About Dev<span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+        </nav>
+    <!-- Search Area -->
+    <div class="s132">
+        <form action = "{{ base_url }}/search" method = "post">
+          <div class="inner-form">
+            <div class="input-field second-wrap">
+              <input id="search" type="text" placeholder="Enter Movie Name" name = "movie_name" />
+            </div>
+            <div class="input-field third-wrap">
+              <input class="btn-search" type = "submit" value = "search" />
+            </div>
+          </div>
+        </form>
+    </div>
+    <div class="s132">
+        <!-- shows queried movie details-->
+        <div class="container">
+            <div class="row border">
+              <div class="d-flex justify-content-center align-items-center">
+                <br>
+                <img src="{{ url_for('static', filename='images/error.png') }}" class="img-thumbnail rounded mx-auto d-block" >
+                <h1 class="text-light mx-auto d-block text-center">Please enter a valid search term !!</h1>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Queried movie details ends here-->
+    
+      </div>
+        <script src="{{ url_for('static', filename='js/extention/choices.js') }}"></script>
+        <script>
+          const choices = new Choices('[data-trigger]',
+          {
+            searchEnabled: false,
+            itemSelectText: '',
+          });
+    
+        </script>
+    
+        <!-- Footer -->
+        <footer class="page-footer font-small blue s133">
+          <!-- Copyright -->
+          <div class="footer-copyright text-center py-3">© 2021 Copyright:
+            <a href="https://rijo.netlify.app">Rijo Thomas</a>
+          </div>
+          <!-- Copyright -->
+        </footer>
+        <!-- Footer -->
+    
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>

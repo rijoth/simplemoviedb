@@ -1,0 +1,115 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Simple MDB</title>
+    <meta name="description" content="Simple Movie Database, search quick movie info...">
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-danger fixed-top s133">
+      <a href="/"><span class="navbar-brand mb-0 h1">Simple <b>MDB</b></span></a>
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            About Dev
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="https://rijo.netlify.app">Blog</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="https://www.instagram.com/technophile_xtra/">Insta</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Search Area -->
+    <div class="s132">
+      <form action = "{{ base_url }}/search" method = "post">
+        <div class="inner-form">
+          <div class="input-field second-wrap">
+            <input id="search" type="text" placeholder="Enter Movie Name" name = "movie_name" />
+          </div>
+          <div class="input-field third-wrap">
+            <input class="btn-search" type = "submit" value = "search" />
+          </div>
+        </div>
+      </form>
+  </div>
+
+  <!-- shows queried movie details-->  
+  {% if got_data %}  
+  <div class="s132">
+      <div class="container-fluid content-row">
+        <div class="p-5 text-center text-white">
+          <h1 class="mb-3"><b>Search Results</b></h1>
+        </div>        
+        <div class="row">
+          {%for i in range(0, mlen)%}
+          <div class="col-sm-12 col-lg-6">
+            <div class="card h-100 align-items-center" style="background-color: rgba(0, 0, 0, 0.0);">
+              <img class="img-thumbnail rounded mx-auto d-block" src="{{ movies[i]['Poster'] }}" alt="movie poster" width="200px" height="200px">
+              <div class="card-body">
+                <h5 class="card-title"><a class="text-white" href="{{ base_url }}/details/{{ movies[i]['Title'] }}/{{ movies[i]['Year'] }}">{{ movies[i]['Title'] }}</a></h5>
+              </div>
+            </div>
+          </div>
+          {%endfor%}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    <!--Queried movie details ends here-->
+
+    <!--display some random movies-->
+    <div class="p-5 text-center text-white s134">
+      <h1 class="mb-3"><b>Random Suggestions</b></h1>
+    </div>
+    <div class="container-fluid content-row s134">  
+      <div class="row">
+      {%for i in range(0, vlen)%}
+        <div class="col-sm-12 col-lg-6">
+          <div class="card h-40 align-items-center" style="background-color: rgba(0, 0, 0, 0.0);">
+            <img class="img-thumbnail" src="{{ infos[i]['Poster'] }}" alt="movie poster" width="100" height="100">
+            <h5 class="card-title"><a class="text-white" href="{{ base_url }}/details/{{ infos[i]['Title'] }}/{{ infos[i]['Year'] }}">{{ infos[i]['Title'] }}</a></h5>
+            <div class="card-body">
+            </div>
+          </div>
+        </div>
+      {%endfor%}
+      </div>
+    </div>
+    <!--display some random movies-->
+  </div>
+    <script src="{{ url_for('static', filename='js/extention/choices.js') }}"></script>
+    <script>
+      const choices = new Choices('[data-trigger]',
+      {
+        searchEnabled: false,
+        itemSelectText: '',
+      });
+
+    </script>
+
+    <!-- Footer -->
+    <footer class="page-footer font-small blue s133">
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3">© 2021 Copyright:
+        <a href="https://rijo.netlify.app">Rijo Thomas</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
